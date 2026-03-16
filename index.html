@@ -982,7 +982,27 @@
   <div>Designed &amp; Built by <span>Dhanunjaya Reddy</span> · <span>2025</span></div>
   <div style="margin-top:8px;opacity:.5;">B.Tech CSE @ LPU · dhanunjaya0340@gmail.com</div>
 </footer>
+<div id="project-modal" class="project-modal">
 
+  <div class="modal-content">
+
+      <span class="modal-close">&times;</span>
+
+      <img id="modal-image" class="modal-image">
+
+      <h2 id="modal-title"></h2>
+
+      <p id="modal-desc"></p>
+
+      <div id="modal-tech"></div>
+
+      <a id="modal-github" target="_blank" class="btn btn-primary">
+        VIEW ON GITHUB
+      </a>
+
+  </div>
+
+</div>
 <script>
 // ===================== CUSTOM CURSOR =====================
 const cursor = document.getElementById('cursor');
@@ -1159,6 +1179,8 @@ document.querySelectorAll('.skill-category').forEach(el=>skillObs.observe(el));
   html+='</div>';
   container.innerHTML=html;
 })();
+document.addEventListener("DOMContentLoaded", function(){
+
 const modal = document.getElementById("project-modal");
 
 const modalTitle = document.getElementById("modal-title");
@@ -1192,6 +1214,8 @@ window.onclick = (e)=>{
     modal.style.display="none";
   }
 };
+
+});
 // ===================== NAV ACTIVE STATE =====================
 const navLinks=document.querySelectorAll('.nav-links a');
 window.addEventListener('scroll',()=>{
@@ -1269,26 +1293,6 @@ function animateParticles(){
 animateParticles();
 </script>
 
-<div id="project-modal" class="project-modal">
 
-  <div class="modal-content">
-
-      <span class="modal-close">&times;</span>
-
-      <img id="modal-image" class="modal-image">
-
-      <h2 id="modal-title"></h2>
-
-      <p id="modal-desc"></p>
-
-      <div id="modal-tech"></div>
-
-      <a id="modal-github" target="_blank" class="btn btn-primary">
-        VIEW ON GITHUB
-      </a>
-
-  </div>
-
-</div>
 </body>
 </html>
