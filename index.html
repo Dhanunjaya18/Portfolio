@@ -64,13 +64,69 @@
     border:1px solid var(--border);
   }
   .cert-img{
-    width:100%;
-    height:140px;
+    width:180px;
+    height:110px;
     object-fit:cover;
     border-radius:6px;
-    margin-bottom:12px;
     border:1px solid var(--border);
+    transition:transform .3s;
   }
+  .cert-content{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+  }
+
+  .profile-3d{
+  position:relative;
+  width:280px;
+  height:280px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  perspective:1000px;
+}
+
+.about-photo{
+  width:240px;
+  height:240px;
+  object-fit:cover;
+  border-radius:50%;
+  border:3px solid var(--accent);
+  z-index:3;
+  transition:transform .2s ease;
+  box-shadow:
+  0 0 20px rgba(0,240,255,0.6),
+  0 0 60px rgba(162,89,255,0.3);
+}
+
+.holo-ring,
+.holo-ring2{
+  position:absolute;
+  border-radius:50%;
+  border:2px solid var(--accent);
+  animation:spinRing 12s linear infinite;
+}
+
+.holo-ring{
+  width:280px;
+  height:280px;
+  opacity:.4;
+}
+
+.holo-ring2{
+  width:320px;
+  height:320px;
+  border-color:var(--accent3);
+  animation-direction:reverse;
+}
+
+#photo-particles{
+  position:absolute;
+  width:360px;
+  height:360px;
+  z-index:1;
+}
   /* HERO */
   #hero{
     position:relative;height:100vh;display:flex;align-items:center;
@@ -162,8 +218,9 @@
 
   /* CERTIFICATES */
   .certs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;}
-  .cert-card{background:var(--card);border:1px solid var(--border);padding:24px;display:flex;gap:16px;align-items:flex-start;transition:all .3s;}
-  .cert-card:hover{border-color:var(--accent2);box-shadow:var(--glow2);}
+  .cert-card{display:flex;align-items:center;gap:20px;background:var(--card);border:1px solid var(--border);padding:20px;transition:all .3s;
+}
+  .cert-card:hover{border-color:var(--accent2);box-shadow:var(--glow2);transform:scale(1.05);}
   .cert-icon{width:44px;height:44px;border:2px solid var(--accent2);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;color:var(--accent2);}
   .cert-name{font-family:'Rajdhani',sans-serif;font-weight:600;color:#fff;font-size:1rem;margin-bottom:4px;}
   .cert-issuer{font-family:'Share Tech Mono',monospace;font-size:.75rem;color:var(--accent2);}
@@ -230,7 +287,7 @@
   @keyframes scanline{0%{transform:translateY(-100%);}100%{transform:translateY(100vh);}}
   @keyframes glitch{0%,100%{clip-path:inset(40% 0 61% 0);}20%{clip-path:inset(92% 0 1% 0);}40%{clip-path:inset(43% 0 1% 0);}60%{clip-path:inset(25% 0 58% 0);}80%{clip-path:inset(54% 0 7% 0);}}
   @keyframes floatY{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
-
+  @keyframes spinRing{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
   /* Scanline overlay */
   .scanline{position:fixed;top:0;left:0;width:100%;height:60px;background:linear-gradient(transparent,rgba(0,240,255,0.015),transparent);animation:scanline 8s linear infinite;pointer-events:none;z-index:9990;}
 
@@ -317,7 +374,6 @@
 <section id="about">
   <div class="grid-bg" style="opacity:.4;"></div>
   <div class="section-header reveal">
-    <span class="section-tag">// 01. WHO AM I</span>
     <h2 class="section-title">ABOUT <span>ME</span></h2>
     <div class="section-line"></div>
   </div>
@@ -340,13 +396,18 @@
           <span class="stat-label">CGPA @ LPU</span>
         </div>
         <div class="stat-card">
-          <span class="stat-num">3</span>
+          <span class="stat-num">10+</span>
           <span class="stat-label">CERTIFICATIONS</span>
         </div>
       </div>
     </div>
     <div class="about-visual reveal">
-      <img src="C:\Users\Dhanu\Downloads\ChatGPT Image Mar 11, 2026, 09_33_02 PM.png" class="about-photo">
+      <div class="profile-3d" id="profile3d">
+        <div class="holo-ring"></div>
+        <div class="holo-ring2"></div>
+        <img src="images/myphoto.jpg" class="about-photo">
+        <canvas id="photo-particles"></canvas>
+      </div>
     </div>
   </div>
 </section>
@@ -356,7 +417,6 @@
 <!-- SKILLS -->
 <section id="skills">
   <div class="section-header reveal">
-    <span class="section-tag">// 02. TECH STACK</span>
     <h2 class="section-title">MY <span>SKILLS</span></h2>
     <div class="section-line"></div>
   </div>
@@ -409,7 +469,6 @@
 <!-- EDUCATION -->
 <section id="education">
   <div class="section-header reveal">
-    <span class="section-tag">// 03. ACADEMIC PATH</span>
     <h2 class="section-title">EDUCATION</h2>
     <div class="section-line"></div>
   </div>
@@ -455,7 +514,6 @@
 <!-- PROJECTS -->
 <section id="projects">
   <div class="section-header reveal">
-    <span class="section-tag">// 04. WHAT I'VE BUILT</span>
     <h2 class="section-title">PROJECTS</h2>
     <div class="section-line"></div>
   </div>
@@ -541,63 +599,74 @@
 <!-- CERTIFICATES -->
 <section id="certificates">
   <div class="section-header reveal">
-    <span class="section-tag">// 05. CREDENTIALS</span>
     <h2 class="section-title">CERTIFICATES</h2>
     <div class="section-line"></div>
   </div>
   <div class="certs-grid">
     <div class="cert-card reveal">
       <img src="Screenshot 2026-03-11 183335.png" class="cert-img">
+      <div class="cert-content">
       <div class="cert-icon">⬡</div>
       <div>
         <div class="cert-name">Generative AI</div>
         <div class="cert-issuer">Oracle</div>
         <div class="cert-date">October 2025</div>
       </div>
+      </div>
     </div>
     <div class="cert-card reveal">
       <img src="Screenshot 2026-03-16 073353" class="cert-img">
+      <div class="cert-content">
       <div class="cert-icon">◈</div>
       <div>
         <div class="cert-name">Java</div>
         <div class="cert-issuer">Iam Neo</div>
         <div class="cert-date">September 2024</div>
       </div>
+      </div>
     </div>
     <div class="cert-card reveal">
       <img src="Screenshot 2026-03-16 203526.png" class="cert-img">
+      <div class="cert-content">
       <div class="cert-icon">◉</div>
       <div>
         <div class="cert-name">Data Structures &amp; Algorithms</div>
         <div class="cert-issuer">NeoColab</div>
         <div class="cert-date">August 2024</div>
       </div>
+      </div>
     </div>
     <div class="cert-card reveal">
       <img src="Screenshot 2026-03-16 073437.png" class="cert-img">
+      <div class="cert-content">
       <div class="cert-icon">◉</div>
       <div>
         <div class="cert-name">Object Oriented Programming</div>
         <div class="cert-issuer">NeoColab</div>
         <div class="cert-date">August 2024</div>
       </div>
+      </div>
     </div>
     <div class="cert-card reveal">
       <img src="Screenshot 2026-03-16 073507.png" class="cert-img">
+      <div class="cert-content">
       <div class="cert-icon">◉</div>
       <div>
         <div class="cert-name">Computer Programming</div>
         <div class="cert-issuer">NeoColab</div>
         <div class="cert-date">May 2024</div>
       </div>
+      </div>
     </div>
     <div class="cert-card reveal">
       <img src="Screenshot 2026-03-16 203726.png" class="cert-img">
+      <div class="cert-content">
       <div class="cert-icon">⬟</div>
       <div>
         <div class="cert-name">ML &amp; Data Science Training</div>
         <div class="cert-issuer">Cipher Schools</div>
         <div class="cert-date">June – July 2025</div>
+      </div>
       </div>
     </div>
   </div>
@@ -608,7 +677,6 @@
 <!-- ACHIEVEMENTS -->
 <section id="achievements">
   <div class="section-header reveal">
-    <span class="section-tag">// 06. MILESTONES</span>
     <h2 class="section-title">ACHIEVEMENTS</h2>
     <div class="section-line"></div>
   </div>
@@ -634,13 +702,6 @@
         <div class="ach-desc">Earned the highest badge level by solving advanced algorithmic challenges with optimized logic and efficient data structures.</div>
       </div>
     </div>
-    <div class="achievement-card reveal">
-      <div class="ach-icon">🎓</div>
-      <div>
-        <div class="ach-title">100% in Matriculation — Sri Chaitanya Techno School</div>
-        <div class="ach-desc">Achieved a perfect score of 100% in Class X board examinations, demonstrating exceptional academic foundation.</div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -649,7 +710,6 @@
 <!-- LEETCODE HEATMAP -->
 <section id="leetcode">
   <div class="section-header reveal">
-    <span class="section-tag">// 07. CODING ACTIVITY</span>
     <h2 class="section-title">LEETCODE <span>HEATMAP</span></h2>
     <div class="section-line"></div>
   </div>
@@ -680,7 +740,6 @@
 <!-- CONTACT -->
 <section id="contact">
   <div class="section-header reveal">
-    <span class="section-tag">// 08. REACH OUT</span>
     <h2 class="section-title">CONTACT <span>ME</span></h2>
     <div class="section-line"></div>
   </div>
@@ -926,6 +985,70 @@ window.addEventListener('scroll',()=>{
     a.style.color=a.getAttribute('href')==='#'+cur?'var(--accent)':'';
   });
 });
+
+const profile = document.getElementById("profile3d");
+
+profile.addEventListener("mousemove", e => {
+
+  const rect = profile.getBoundingClientRect();
+
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+
+  const centerX = rect.width/2;
+  const centerY = rect.height/2;
+
+  const rotateX = -(y-centerY)/20;
+  const rotateY = (x-centerX)/20;
+
+  profile.style.transform =
+  `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+
+});
+
+profile.addEventListener("mouseleave",()=>{
+  profile.style.transform="rotateX(0) rotateY(0)";
+});
+
+const canvas = document.getElementById("photo-particles");
+const ctx = canvas.getContext("2d");
+
+canvas.width = 360;
+canvas.height = 360;
+
+let PhotoParticles = [];
+
+for(let i=0;i<60;i++){
+  PhotoParticles.push({
+    x:Math.random()*360,
+    y:Math.random()*360,
+    vx:(Math.random()-0.5)*0.6,
+    vy:(Math.random()-0.5)*0.6,
+    r:Math.random()*2+1
+  });
+}
+
+function animateParticles(){
+
+  ctx.clearRect(0,0,360,360);
+
+  PhotoParticles.forEach(p=>{
+    p.x+=p.vx;
+    p.y+=p.vy;
+
+    if(p.x<0||p.x>360)p.vx*=-1;
+    if(p.y<0||p.y>360)p.vy*=-1;
+
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle="rgba(0,240,255,0.7)";
+    ctx.fill();
+  });
+
+  requestAnimationFrame(animateParticles);
+}
+
+animateParticles();
 </script>
 </body>
 </html>
