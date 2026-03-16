@@ -127,6 +127,44 @@
   height:360px;
   z-index:1;
 }
+
+.project-modal{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.85);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:2000;
+}
+
+.modal-content{
+  background:#020408;
+  border:1px solid var(--border);
+  padding:40px;
+  max-width:700px;
+  width:90%;
+  position:relative;
+  animation:fadeUp .4s ease;
+}
+
+.modal-close{
+  position:absolute;
+  right:20px;
+  top:10px;
+  font-size:28px;
+  cursor:pointer;
+  color:var(--accent);
+}
+
+.modal-image{
+  width:100%;
+  border-radius:6px;
+  margin-bottom:20px;
+}
   /* HERO */
   #hero{
     position:relative;height:100vh;display:flex;align-items:center;
@@ -509,78 +547,212 @@
     <h2 class="section-title">PROJECTS</h2>
     <div class="section-line"></div>
   </div>
+
   <div class="projects-grid">
 
-    <div class="project-card reveal">
+    <div class="project-card reveal"
+    data-title="Campus Lost & Found Portal"
+    data-desc="Full campus platform allowing students to report lost items, claim ownership and chat with finders. Includes authentication, REST APIs and real-time chat support."
+    data-tech="Python, Django, SQLite, Bootstrap"
+    data-image="Screenshot 2026-03-16 171511.png"
+    data-github="https://github.com/Dhanunjaya18/campus_lostfound">
+
       <img src="Screenshot 2026-03-16 171511.png" class="project-img">
+
       <div class="project-num">01</div>
-      <div class="project-title">Campus Lost &amp; Found Portal</div>
-      <div class="project-desc">Django-based platform for managing lost/found items with real-time chat, ownership claims, and RESTful APIs. Supports multi-user workflows with persistent message storage.</div>
-      <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">Django</span><span class="project-tag">SQLite</span><span class="project-tag">Bootstrap</span></div>
-      <a href="https://github.com/Dhanunjaya18/campus_lostfound" class="project-link" target="_blank">→ VIEW ON GITHUB</a>
+      <div class="project-title">Campus Lost & Found Portal</div>
+
+      <div class="project-desc">
+        Django platform for managing lost items with real-time chat and ownership claims.
+      </div>
+
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag">Django</span>
+        <span class="project-tag">SQLite</span>
+        <span class="project-tag">Bootstrap</span>
+      </div>
+
     </div>
 
-    <div class="project-card reveal">
+
+    <div class="project-card reveal"
+    data-title="AI Classroom Doubt Detector"
+    data-desc="ML powered NLP system that clusters similar student doubts using TF-IDF and cosine similarity. Teachers can see trending doubts and resolve them efficiently."
+    data-tech="Python, Django, NLP, Scikit-learn"
+    data-image="Screenshot 2026-03-16 172110.png"
+    data-github="https://github.com/Dhanunjaya18/AI-Classroom-Doubt-Detector">
+
       <img src="Screenshot 2026-03-16 172110.png" class="project-img">
+
       <div class="project-num">02</div>
       <div class="project-title">AI Classroom Doubt Detector</div>
-      <div class="project-desc">ML-powered NLP platform clustering student doubts using TF-IDF & cosine similarity. Features teacher/student dashboards with upvoting and analytics visualization.</div>
-      <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">Django</span><span class="project-tag">NLP</span><span class="project-tag">Scikit-learn</span></div>
-      <a href="https://github.com/Dhanunjaya18/AI-Classroom-Doubt-Detector" class="project-link" target="_blank">→ VIEW ON GITHUB</a>
+
+      <div class="project-desc">
+        NLP powered platform that clusters similar student doubts automatically.
+      </div>
+
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag">Django</span>
+        <span class="project-tag">NLP</span>
+        <span class="project-tag">Scikit-learn</span>
+      </div>
+
     </div>
 
-    <div class="project-card reveal">
+
+    <div class="project-card reveal"
+    data-title="Mini Redis — In-Memory Key Value Store"
+    data-desc="Custom Redis-like in-memory database written in C++. Supports concurrent clients through a multithreaded TCP server and optimized data structures."
+    data-tech="C++, TCP Sockets, Multithreading"
+    data-image="778a7e21-455b-45f6-8487-63f9eb41e88b_2000x1414.jpg"
+    data-github="https://github.com/Dhanunjaya18/mini-redis">
+
       <img src="778a7e21-455b-45f6-8487-63f9eb41e88b_2000x1414.jpg" class="project-img">
+
       <div class="project-num">03</div>
       <div class="project-title">Mini Redis — In-Memory Key-Value Store</div>
-      <div class="project-desc">High-performance in-memory data engine built from scratch in C++. Multithreaded TCP server handles concurrent clients with optimized data structures for O(1) ops.</div>
-      <div class="project-tags"><span class="project-tag">C++</span><span class="project-tag">Sockets</span><span class="project-tag">Multithreading</span><span class="project-tag">TCP</span></div>
-      <a href="https://github.com/Dhanunjaya18/mini-redis" class="project-link" target="_blank">→ VIEW ON GITHUB</a>
+
+      <div class="project-desc">
+        High-performance in-memory database with multithreaded TCP server.
+      </div>
+
+      <div class="project-tags">
+        <span class="project-tag">C++</span>
+        <span class="project-tag">Sockets</span>
+        <span class="project-tag">Multithreading</span>
+        <span class="project-tag">TCP</span>
+      </div>
+
     </div>
 
-    <div class="project-card reveal">
+
+    <div class="project-card reveal"
+    data-title="Disease Prediction — Hybrid ML"
+    data-desc="Healthcare prediction system combining Decision Trees, Random Forest and ensemble techniques to improve disease prediction accuracy."
+    data-tech="Python, Scikit-learn, ML, Pandas"
+    data-image="The-framework-of-Heart-Disease-Prediction-System_Q320.jpg"
+    data-github="https://github.com/Dhanunjaya18/disease-prediction-hybrid-ml">
+
       <img src="The-framework-of-Heart-Disease-Prediction-System_Q320.jpg" class="project-img">
+
       <div class="project-num">04</div>
       <div class="project-title">Disease Prediction — Hybrid ML</div>
-      <div class="project-desc">Hybrid machine learning model combining multiple classifiers for accurate disease prediction. Leverages ensemble techniques and feature engineering for healthcare data.</div>
-      <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">Scikit-learn</span><span class="project-tag">ML</span><span class="project-tag">Pandas</span></div>
-      <a href="https://github.com/Dhanunjaya18/disease-prediction-hybrid-ml" class="project-link" target="_blank">→ VIEW ON GITHUB</a>
+
+      <div class="project-desc">
+        Hybrid machine learning model improving healthcare prediction accuracy.
+      </div>
+
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag">Scikit-learn</span>
+        <span class="project-tag">ML</span>
+        <span class="project-tag">Pandas</span>
+      </div>
+
     </div>
 
-    <div class="project-card reveal">
+
+    <div class="project-card reveal"
+    data-title="Image Classifier — CNN"
+    data-desc="Deep learning based image classifier built with CNN architecture including data augmentation and transfer learning techniques."
+    data-tech="Python, TensorFlow, CNN"
+    data-image="original.png"
+    data-github="https://github.com/Dhanunjaya18/IMAGE-CLASSIFIER">
+
       <img src="original.png" class="project-img">
+
       <div class="project-num">05</div>
       <div class="project-title">Image Classifier — CNN</div>
-      <div class="project-desc">Deep learning image classification model using Convolutional Neural Networks. Built during ML training as a capstone project with data augmentation and transfer learning.</div>
-      <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">TensorFlow</span><span class="project-tag">CNN</span><span class="project-tag">NumPy</span></div>
-      <a href="https://github.com/Dhanunjaya18/IMAGE-CLASSIFIER" class="project-link" target="_blank">→ VIEW ON GITHUB</a>
+
+      <div class="project-desc">
+        CNN based deep learning model for image classification tasks.
+      </div>
+
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag">TensorFlow</span>
+        <span class="project-tag">CNN</span>
+        <span class="project-tag">NumPy</span>
+      </div>
+
     </div>
 
-    <div class="project-card reveal">
+
+    <div class="project-card reveal"
+    data-title="Fuzzy Home Automation"
+    data-desc="Smart home automation system using fuzzy logic controllers to automatically adjust environmental conditions based on sensor inputs."
+    data-tech="Python, Fuzzy Logic, IoT"
+    data-image="d5b03c5cf68af14b0bc6aaa8b5333f25f9b054ad-1792x1024.webp"
+    data-github="https://github.com/Dhanunjaya18/Fuzzy-home-automation">
+
       <img src="d5b03c5cf68af14b0bc6aaa8b5333f25f9b054ad-1792x1024.webp" class="project-img">
+
       <div class="project-num">06</div>
       <div class="project-title">Fuzzy Home Automation</div>
-      <div class="project-desc">Smart home automation system using fuzzy logic controllers for intelligent decision-making based on environmental sensor inputs and user-defined rule sets.</div>
-      <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">Fuzzy Logic</span><span class="project-tag">IoT</span><span class="project-tag">Automation</span></div>
-      <a href="https://github.com/Dhanunjaya18/Fuzzy-home-automation" class="project-link" target="_blank">→ VIEW ON GITHUB</a>
+
+      <div class="project-desc">
+        Smart automation system using fuzzy logic decision making.
+      </div>
+
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag">Fuzzy Logic</span>
+        <span class="project-tag">IoT</span>
+      </div>
+
     </div>
 
-    <div class="project-card reveal">
+
+    <div class="project-card reveal"
+    data-title="AI Driven Plant Health Detection"
+    data-desc="Computer vision based system for detecting plant diseases from leaf images enabling early diagnosis in agriculture."
+    data-tech="Python, Deep Learning, OpenCV"
+    data-image="OIP.jpg"
+    data-github="https://github.com/Potluri-Naga-Venkata-Sai/AI-driven-Plant-health-detection">
+
       <img src="OIP.jpg" class="project-img">
+
       <div class="project-num">07</div>
       <div class="project-title">AI-Driven Plant Health Detection</div>
-      <div class="project-desc">Computer vision system for detecting plant diseases using AI. Analyzes leaf images to identify health issues early, enabling precision agriculture interventions.</div>
-      <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">Deep Learning</span><span class="project-tag">OpenCV</span><span class="project-tag">TensorFlow</span></div>
-      <a href="https://github.com/Potluri-Naga-Venkata-Sai/AI-driven-Plant-health-detection" class="project-link" target="_blank">→ VIEW ON GITHUB</a>
+
+      <div class="project-desc">
+        Computer vision model detecting plant diseases using AI.
+      </div>
+
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag">Deep Learning</span>
+        <span class="project-tag">OpenCV</span>
+      </div>
+
     </div>
 
-    <div class="project-card reveal">
+
+    <div class="project-card reveal"
+    data-title="Portfolio Website"
+    data-desc="Interactive cyberpunk portfolio built using HTML, CSS, JavaScript and Three.js including particle systems and animated UI components."
+    data-tech="Three.js, JavaScript, CSS"
+    data-image="Screenshot 2026-03-16 202039.png"
+    data-github="https://github.com/Dhanunjaya18/Portfolio">
+
       <img src="Screenshot 2026-03-16 202039.png" class="project-img">
+
       <div class="project-num">08</div>
       <div class="project-title">Portfolio Website</div>
-      <div class="project-desc">This very portfolio — a cyberpunk-themed, Three.js-powered interactive site with 3D animations, particle systems, and full personal showcase. 100% custom HTML/CSS/JS.</div>
-      <div class="project-tags"><span class="project-tag">Three.js</span><span class="project-tag">JavaScript</span><span class="project-tag">CSS3</span><span class="project-tag">HTML5</span></div>
-      <a href="https://github.com/Dhanunjaya18/Portfolio" class="project-link" target="_blank">→ VIEW ON GITHUB</a>
+
+      <div class="project-desc">
+        Interactive Three.js powered developer portfolio website.
+      </div>
+
+      <div class="project-tags">
+        <span class="project-tag">Three.js</span>
+        <span class="project-tag">JavaScript</span>
+        <span class="project-tag">CSS</span>
+        <span class="project-tag">HTML</span>
+      </div>
+
     </div>
 
   </div>
@@ -987,7 +1159,39 @@ document.querySelectorAll('.skill-category').forEach(el=>skillObs.observe(el));
   html+='</div>';
   container.innerHTML=html;
 })();
+const modal = document.getElementById("project-modal");
 
+const modalTitle = document.getElementById("modal-title");
+const modalDesc = document.getElementById("modal-desc");
+const modalImage = document.getElementById("modal-image");
+const modalTech = document.getElementById("modal-tech");
+const modalGithub = document.getElementById("modal-github");
+
+document.querySelectorAll(".project-card").forEach(card => {
+
+  card.addEventListener("click", () => {
+
+    modal.style.display="flex";
+
+    modalTitle.innerText = card.dataset.title;
+    modalDesc.innerText = card.dataset.desc;
+    modalImage.src = card.dataset.image;
+    modalTech.innerText = "Tech: " + card.dataset.tech;
+    modalGithub.href = card.dataset.github;
+
+  });
+
+});
+
+document.querySelector(".modal-close").onclick = () =>{
+  modal.style.display="none";
+};
+
+window.onclick = (e)=>{
+  if(e.target === modal){
+    modal.style.display="none";
+  }
+};
 // ===================== NAV ACTIVE STATE =====================
 const navLinks=document.querySelectorAll('.nav-links a');
 window.addEventListener('scroll',()=>{
@@ -1064,5 +1268,27 @@ function animateParticles(){
 
 animateParticles();
 </script>
+
+<div id="project-modal" class="project-modal">
+
+  <div class="modal-content">
+
+      <span class="modal-close">&times;</span>
+
+      <img id="modal-image" class="modal-image">
+
+      <h2 id="modal-title"></h2>
+
+      <p id="modal-desc"></p>
+
+      <div id="modal-tech"></div>
+
+      <a id="modal-github" target="_blank" class="btn btn-primary">
+        VIEW ON GITHUB
+      </a>
+
+  </div>
+
+</div>
 </body>
 </html>
