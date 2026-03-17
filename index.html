@@ -64,13 +64,29 @@
     border:1px solid var(--border);
   }
   .cert-img{
-    width:180px;
-    height:110px;
-    object-fit:cover;
-    border-radius:6px;
-    border:1px solid var(--border);
-    transition:transform .3s;
+  width:180px;
+  height:110px;
+  object-fit:cover;
+  border-radius:6px;
+  border:1px solid var(--border);
+  transition:all .35s ease;
+  animation:certGlow 3s infinite alternate;
+}
+
+@keyframes certGlow{
+  0%{
+    box-shadow:0 0 6px rgba(0,240,255,0.2);
   }
+  100%{
+    box-shadow:
+      0 0 12px rgba(0,240,255,0.5),
+      0 0 24px rgba(162,89,255,0.4);
+  }
+}
+
+.cert-card:hover .cert-img{
+  transform:scale(1.08);
+}
   .cert-content{
     display:flex;
     flex-direction:column;
@@ -226,6 +242,45 @@ transition:all .35s ease;
 .project-modal.active .modal-content{
   transform:scale(1) translateY(0);
   opacity:1;
+}
+.skill-badge{
+  position:absolute;
+  padding:8px 16px;
+  border-radius:30px;
+
+  font-family:'Share Tech Mono',monospace;
+  font-size:13px;
+
+  background:rgba(5,20,35,0.7);
+  border:1px solid var(--border);
+
+  color:var(--accent);
+
+  backdrop-filter:blur(8px);
+
+  box-shadow:0 0 10px rgba(0,240,255,0.2);
+
+  animation:floatSkill 6s ease-in-out infinite;
+}
+
+.badge1{
+  top:-10px;
+  left:40px;
+}
+
+.badge2{
+  top:-10px;
+  right:30px;
+}
+
+.badge3{
+  bottom:10px;
+  left:30px;
+}
+
+.badge4{
+  bottom:10px;
+  right:20px;
 }
   /* HERO */
   #hero{
@@ -388,6 +443,7 @@ transition:all .35s ease;
   @keyframes glitch{0%,100%{clip-path:inset(40% 0 61% 0);}20%{clip-path:inset(92% 0 1% 0);}40%{clip-path:inset(43% 0 1% 0);}60%{clip-path:inset(25% 0 58% 0);}80%{clip-path:inset(54% 0 7% 0);}}
   @keyframes floatY{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
   @keyframes spinRing{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+  @keyframes floatSkill{0%{transform:translateY(0px);}50%{transform:translateY(-8px);}100%{transform:translateY(0px);}}
   /* Scanline overlay */
   .scanline{position:fixed;top:0;left:0;width:100%;height:60px;background:linear-gradient(transparent,rgba(0,240,255,0.015),transparent);animation:scanline 8s linear infinite;pointer-events:none;z-index:9990;}
 
@@ -495,11 +551,20 @@ transition:all .35s ease;
     </div>
     <div class="about-visual reveal">
       <div class="profile-3d" id="profile3d">
-        <div class="holo-ring"></div>
-        <div class="holo-ring2"></div>
-        <img src="ChatGPT Image Mar 16, 2026, 10_50_09 PM.png" class="about-photo">
-        <canvas id="photo-particles"></canvas>
-      </div>
+
+  <div class="skill-badge badge1">🐍 Python</div>
+  <div class="skill-badge badge2">🧠 Machine Learning</div>
+  <div class="skill-badge badge3">⚛ React</div>
+  <div class="skill-badge badge4">🤖 Deep Learning</div>
+
+  <div class="holo-ring"></div>
+  <div class="holo-ring2"></div>
+
+  <img src="ChatGPT Image Mar 11, 2026, 09_33_02 PM.png" class="about-photo">
+
+  <canvas id="photo-particles"></canvas>
+
+</div>
     </div>
   </div>
 </section>
@@ -822,102 +887,129 @@ transition:all .35s ease;
 
 <div class="divider"></div>
 
-<!-- CERTIFICATES -->
+  <!-- CERTIFICATES -->
+
 <section id="certificates">
   <div class="section-header reveal">
     <h2 class="section-title">CERTIFICATES</h2>
     <div class="section-line"></div>
   </div>
+
   <div class="certs-grid">
-    <div class="cert-card reveal">
-      <img src="Screenshot 2026-03-11 183335.png" class="cert-img">
-      <div class="cert-content">
-      <div class="cert-icon">⬡</div>
-      <div>
-        <div class="cert-name">Generative AI</div>
-        <div class="cert-issuer">Oracle</div>
-        <div class="cert-date">October 2025</div>
-      </div>
-      </div>
-    </div>
-    <div class="cert-card reveal">
-      <img src="Screenshot 2026-03-16 213715.png" class="cert-img">
-      <div class="cert-content">
-      <div class="cert-icon">⬡</div>
-      <div>
-        <div class="cert-name">DevOps</div>
-        <div class="cert-issuer">Oracle</div>
-        <div class="cert-date">October 2025</div>
-      </div>
-      </div>
-    </div>
-    <div class="cert-card reveal">
-      <img src="Screenshot 2026-03-16 073353.png" class="cert-img">
-      <div class="cert-content">
-      <div class="cert-icon">◈</div>
-      <div>
-        <div class="cert-name">Java</div>
-        <div class="cert-issuer">Iam Neo</div>
-        <div class="cert-date">September 2024</div>
-      </div>
-      </div>
-    </div>
-    <div class="cert-card reveal">
-      <img src="Screenshot 2026-03-16 213852.png" class="cert-img">
-      <div class="cert-content">
-      <div class="cert-icon">◈</div>
-      <div>
-        <div class="cert-name">Fundamentals of Computer Networks</div>
-        <div class="cert-issuer">Coursera</div>
-        <div class="cert-date">September 2024</div>
-      </div>
-      </div>
-    </div>
-    <div class="cert-card reveal">
-      <img src="Screenshot 2026-03-16 203526.png" class="cert-img">
-      <div class="cert-content">
-      <div class="cert-icon">◉</div>
-      <div>
-        <div class="cert-name">Data Structures &amp; Algorithms</div>
-        <div class="cert-issuer">NeoColab</div>
-        <div class="cert-date">August 2024</div>
-      </div>
-      </div>
-    </div>
-    <div class="cert-card reveal">
-      <img src="Screenshot 2026-03-16 073437.png" class="cert-img">
-      <div class="cert-content">
-      <div class="cert-icon">◉</div>
-      <div>
-        <div class="cert-name">Object Oriented Programming</div>
-        <div class="cert-issuer">NeoColab</div>
-        <div class="cert-date">August 2024</div>
-      </div>
-      </div>
-    </div>
-    <div class="cert-card reveal">
-      <img src="Screenshot 2026-03-16 073507.png" class="cert-img">
-      <div class="cert-content">
-      <div class="cert-icon">◉</div>
-      <div>
-        <div class="cert-name">Computer Programming</div>
-        <div class="cert-issuer">NeoColab</div>
-        <div class="cert-date">May 2024</div>
-      </div>
-      </div>
-    </div>
-    <div class="cert-card reveal">
-      <img src="Screenshot 2026-03-16 203726.png" class="cert-img">
-      <div class="cert-content">
-      <div class="cert-icon">⬟</div>
-      <div>
-        <div class="cert-name">ML &amp; Data Science Training</div>
-        <div class="cert-issuer">Cipher Schools</div>
-        <div class="cert-date">June – July 2025</div>
-      </div>
-      </div>
+
+```
+<div class="cert-card reveal"
+     data-image="Screenshot 2026-03-11 183335.png"
+     data-title="Generative AI — Oracle">
+  <img src="Screenshot 2026-03-11 183335.png" class="cert-img">
+  <div class="cert-content">
+    <div class="cert-icon">⬡</div>
+    <div>
+      <div class="cert-name">Generative AI</div>
+      <div class="cert-issuer">Oracle</div>
+      <div class="cert-date">October 2025</div>
     </div>
   </div>
+</div>
+
+<div class="cert-card reveal"
+     data-image="Screenshot 2026-03-16 213715.png"
+     data-title="DevOps — Oracle">
+  <img src="Screenshot 2026-03-16 213715.png" class="cert-img">
+  <div class="cert-content">
+    <div class="cert-icon">⬡</div>
+    <div>
+      <div class="cert-name">DevOps</div>
+      <div class="cert-issuer">Oracle</div>
+      <div class="cert-date">October 2025</div>
+    </div>
+  </div>
+</div>
+
+<div class="cert-card reveal"
+     data-image="Screenshot 2026-03-16 073353.png"
+     data-title="Java — Iam Neo">
+  <img src="Screenshot 2026-03-16 073353.png" class="cert-img">
+  <div class="cert-content">
+    <div class="cert-icon">◈</div>
+    <div>
+      <div class="cert-name">Java</div>
+      <div class="cert-issuer">Iam Neo</div>
+      <div class="cert-date">September 2024</div>
+    </div>
+  </div>
+</div>
+
+<div class="cert-card reveal"
+     data-image="Screenshot 2026-03-16 213852.png"
+     data-title="Fundamentals of Computer Networks — Coursera">
+  <img src="Screenshot 2026-03-16 213852.png" class="cert-img">
+  <div class="cert-content">
+    <div class="cert-icon">◈</div>
+    <div>
+      <div class="cert-name">Fundamentals of Computer Networks</div>
+      <div class="cert-issuer">Coursera</div>
+      <div class="cert-date">September 2024</div>
+    </div>
+  </div>
+</div>
+
+<div class="cert-card reveal"
+     data-image="Screenshot 2026-03-16 203526.png"
+     data-title="Data Structures & Algorithms — NeoColab">
+  <img src="Screenshot 2026-03-16 203526.png" class="cert-img">
+  <div class="cert-content">
+    <div class="cert-icon">◉</div>
+    <div>
+      <div class="cert-name">Data Structures & Algorithms</div>
+      <div class="cert-issuer">NeoColab</div>
+      <div class="cert-date">August 2024</div>
+    </div>
+  </div>
+</div>
+
+<div class="cert-card reveal"
+     data-image="Screenshot 2026-03-16 073437.png"
+     data-title="Object Oriented Programming — NeoColab">
+  <img src="Screenshot 2026-03-16 073437.png" class="cert-img">
+  <div class="cert-content">
+    <div class="cert-icon">◉</div>
+    <div>
+      <div class="cert-name">Object Oriented Programming</div>
+      <div class="cert-issuer">NeoColab</div>
+      <div class="cert-date">August 2024</div>
+    </div>
+  </div>
+</div>
+
+<div class="cert-card reveal"
+     data-image="Screenshot 2026-03-16 073507.png"
+     data-title="Computer Programming — NeoColab">
+  <img src="Screenshot 2026-03-16 073507.png" class="cert-img">
+  <div class="cert-content">
+    <div class="cert-icon">◉</div>
+    <div>
+      <div class="cert-name">Computer Programming</div>
+      <div class="cert-issuer">NeoColab</div>
+      <div class="cert-date">May 2024</div>
+    </div>
+  </div>
+</div>
+
+<div class="cert-card reveal"
+     data-image="Screenshot 2026-03-16 203726.png"
+     data-title="ML & Data Science Training — Cipher Schools">
+  <img src="Screenshot 2026-03-16 203726.png" class="cert-img">
+  <div class="cert-content">
+    <div class="cert-icon">⬟</div>
+    <div>
+      <div class="cert-name">ML & Data Science Training</div>
+      <div class="cert-issuer">Cipher Schools</div>
+      <div class="cert-date">June – July 2025</div>
+    </div>
+  </div>
+</div>
+
 </section>
 
 <div class="divider"></div>
@@ -1065,6 +1157,19 @@ transition:all .35s ease;
   </a>
 
 </div>
+</div>
+<div id="cert-modal" class="project-modal">
+
+  <div class="modal-content">
+
+    <span class="modal-close" id="cert-close">&times;</span>
+
+    <img id="cert-image" class="modal-image">
+
+    <h2 id="cert-title"></h2>
+
+  </div>
+
 </div>
 <script>
 // ===================== CUSTOM CURSOR =====================
@@ -1216,7 +1321,32 @@ const skillObs=new IntersectionObserver(entries=>{
   });
 },{threshold:.3});
 document.querySelectorAll('.skill-category').forEach(el=>skillObs.observe(el));
+const certModal = document.getElementById("cert-modal");
+const certImage = document.getElementById("cert-image");
+const certTitle = document.getElementById("cert-title");
 
+document.querySelectorAll(".cert-card").forEach(cert=>{
+
+  cert.addEventListener("click",()=>{
+
+    certModal.classList.add("active");
+
+    certImage.src = cert.dataset.image;
+    certTitle.innerText = cert.dataset.title;
+
+  });
+
+});
+
+document.getElementById("cert-close").onclick = ()=>{
+  certModal.classList.remove("active");
+};
+
+window.addEventListener("click",(e)=>{
+  if(e.target === certModal){
+    certModal.classList.remove("active");
+  }
+});
 // ===================== LEETCODE HEATMAP (Generated) =====================
 (function(){
   const container=document.getElementById('heatmap-grid-container');
