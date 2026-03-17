@@ -270,22 +270,22 @@ transition:all .35s ease;
 
 .badge1{
   top:-30px;
-  left:40px;
+  left:50px;
 }
 
 .badge2{
   top:-30px;
-  right:40px;
+  right:50px;
 }
 
 .badge3{
   bottom:-30px;
-  left:40px;
+  left:30px;
 }
 
 .badge4{
   bottom:-30px;
-  right:40px;
+  right:50px;
 }
   /* HERO */
   #hero{
@@ -1150,24 +1150,29 @@ transition:all .35s ease;
 
   <div class="modal-content">
 
-      <span class="modal-close">&times;</span>
+    <span class="modal-close" id="project-close">&times;</span>
 
-      <img id="modal-image" class="modal-image">
+    <img id="modal-image" class="modal-image">
 
-<div class="modal-text">
+    <div class="modal-text">
 
-  <h2 id="modal-title"></h2>
+      <h2 id="modal-title"></h2>
 
-  <p id="modal-desc"></p>
+      <p id="modal-desc"></p>
 
-  <div id="modal-tech" class="modal-tech"></div>
+      <div id="modal-tech" class="modal-tech"></div>
 
-  <a id="modal-github" target="_blank" class="btn btn-primary">
-    VIEW ON GITHUB
-  </a>
+      <a id="modal-github" target="_blank" class="btn btn-primary">
+        VIEW ON GITHUB
+      </a>
+
+    </div>
+
+  </div>
 
 </div>
-</div>
+
+
 <div id="cert-modal" class="project-modal">
 
   <div class="modal-content">
@@ -1179,6 +1184,7 @@ transition:all .35s ease;
     <h2 id="cert-title"></h2>
 
   </div>
+
 </div>
 <script>
 // ===================== CUSTOM CURSOR =====================
@@ -1382,7 +1388,7 @@ document.querySelectorAll(".project-card").forEach(card => {
 
 });
 
-document.querySelector(".modal-close").onclick = () =>{
+document.getElementById("project-close").onclick = () =>{
   modal.classList.remove("active");
 };
 
@@ -1393,6 +1399,8 @@ window.onclick = (e)=>{
 };
 
 });
+
+document.addEventListener("DOMContentLoaded", function(){
 
 const certModal = document.getElementById("cert-modal");
 const certImage = document.getElementById("cert-image");
@@ -1420,6 +1428,8 @@ window.addEventListener("click", e => {
   if(e.target === certModal){
     certModal.classList.remove("active");
   }
+
+});
 
 });
 // ===================== NAV ACTIVE STATE =====================
