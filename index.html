@@ -1571,7 +1571,139 @@ function animateParticles(){
 }
 
 animateParticles();
+// ===================== EDUCATION 3D DEV ANIMATION =====================
 
+(function(){
+
+const canvas = document.getElementById("edu-canvas");
+
+const renderer = new THREE.WebGLRenderer({
+  canvas,
+  alpha:true,
+  antialias:true
+});
+
+renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setSize(canvas.offsetWidth, canvas.offsetHeight);
+
+const scene = new THREE.Scene();
+
+const camera = new THREE.PerspectiveCamera(
+  60,
+  canvas.offsetWidth/canvas.offsetHeight,
+  0.1,
+  100
+);
+
+camera.position.set(0,1.5,4);
+
+
+// ================= LAPTOP =================
+
+const laptopBase = new THREE.Mesh(
+  new THREE.BoxGeometry(2,0.12,1.4),
+  new THREE.MeshStandardMaterial({
+    color:0x111111,
+    metalness:0.6,
+    roughness:0.3
+  })
+);
+
+scene.add(laptopBase);
+
+const laptopScreen = new THREE.Mesh(
+  new THREE.BoxGeometry(2,1.2,0.05),
+  new THREE.MeshStandardMaterial({
+    color:0x050d15,
+    emissive:0x00f0ff,
+    emissiveIntensity:0.4
+  })
+);
+
+laptopScreen.position.set(0,0.65,-0.65);
+laptopScreen.rotation.x = -0.4;
+
+scene.add(laptopScreen);
+
+
+// ================= FLOATING CODE =================
+
+const codeGeometry = new THREE.BufferGeometry();
+const codeVertices = [];
+
+for(let i=0;i<200;i++){
+
+  codeVertices.push(
+    (Math.random()-0.5)*6,
+    Math.random()*4,
+    (Math.random()-0.5)*6
+  );
+
+}
+
+codeGeometry.setAttribute(
+  "position",
+  new THREE.Float32BufferAttribute(codeVertices,3)
+);
+
+const codeMaterial = new THREE.PointsMaterial({
+  color:0x00f0ff,
+  size:0.05,
+  transparent:true,
+  opacity:0.7
+});
+
+const codeParticles = new THREE.Points(codeGeometry,codeMaterial);
+
+scene.add(codeParticles);
+
+
+// ================= LIGHT =================
+
+const light = new THREE.PointLight(0x00f0ff,1.2);
+light.position.set(3,3,3);
+
+scene.add(light);
+
+scene.add(new THREE.AmbientLight(0xffffff,0.4));
+
+
+// ================= ANIMATION =================
+
+let t = 0;
+
+function animate(){
+
+  requestAnimationFrame(animate);
+
+  t += 0.01;
+
+  laptopBase.rotation.y = Math.sin(t)*0.2;
+
+  codeParticles.rotation.y += 0.002;
+
+  camera.lookAt(0,0,0);
+
+  renderer.render(scene,camera);
+
+}
+
+animate();
+
+
+// ================= RESIZE =================
+
+window.addEventListener("resize",()=>{
+
+  renderer.setSize(canvas.offsetWidth, canvas.offsetHeight);
+
+  camera.aspect = canvas.offsetWidth/canvas.offsetHeight;
+
+  camera.updateProjectionMatrix();
+
+});
+
+})();
 
 </script>
 
