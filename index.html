@@ -380,7 +380,33 @@ transition:all .35s ease;
 
 .edu-visual{height:420px;position:relative;}
 #edu-canvas{width:100%;height:100%;}
+.edu-animation-wrapper{
+  position:relative;
+  width:100%;
+  height:420px;
+}
 
+#edu-tech{
+  width:100%;
+  height:100%;
+}
+
+.edu-tech-label{
+  position:absolute;
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:12px;
+  border:1px solid var(--border);
+  background:rgba(0,0,0,0.5);
+  color:var(--accent);
+  backdrop-filter:blur(8px);
+  animation:floatSkill 6s ease-in-out infinite;
+}
+
+.label1{ top:10%; left:20%; }
+.label2{ top:25%; right:10%; }
+.label3{ bottom:25%; left:10%; }
+.label4{ bottom:10%; right:20%; }
 @media(max-width:900px){.education-layout{grid-template-columns:1fr;}}
   /* PROJECTS */
   .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:24px;}
@@ -1469,109 +1495,7 @@ window.addEventListener("click", e => {
 
 });
 
-(function(){
 
-const canvas = document.getElementById("edu-canvas");
-
-const renderer = new THREE.WebGLRenderer({
-  canvas:canvas,
-  alpha:true,
-  antialias:true
-});
-
-renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-
-const scene = new THREE.Scene();
-
-const camera = new THREE.PerspectiveCamera(
-  60,
-  canvas.clientWidth / canvas.clientHeight,
-  0.1,
-  100
-);
-
-camera.position.z = 4;
-
-/* sphere wireframe */
-
-const geo = new THREE.SphereGeometry(1.5, 40, 40);
-
-const mat = new THREE.MeshBasicMaterial({
-  color:0x00f0ff,
-  wireframe:true,
-  transparent:true,
-  opacity:0.35
-});
-
-const sphere = new THREE.Mesh(geo, mat);
-
-scene.add(sphere);
-
-/* orbit ring */
-
-const ringGeo = new THREE.TorusGeometry(2.2,0.02,8,120);
-
-const ringMat = new THREE.MeshBasicMaterial({
-  color:0xff2d78,
-  transparent:true,
-  opacity:0.6
-});
-
-const ring = new THREE.Mesh(ringGeo, ringMat);
-
-ring.rotation.x = Math.PI/3;
-
-scene.add(ring);
-
-/* floating particles */
-
-const pGeo = new THREE.BufferGeometry();
-const positions = [];
-
-for(let i=0;i<200;i++){
-
-  positions.push(
-    (Math.random()-0.5)*6,
-    (Math.random()-0.5)*6,
-    (Math.random()-0.5)*6
-  );
-
-}
-
-pGeo.setAttribute(
-  'position',
-  new THREE.Float32BufferAttribute(positions,3)
-);
-
-const pMat = new THREE.PointsMaterial({
-  color:0x00f0ff,
-  size:0.03
-});
-
-const points = new THREE.Points(pGeo,pMat);
-
-scene.add(points);
-
-/* animation */
-
-function animate(){
-
-  requestAnimationFrame(animate);
-
-  sphere.rotation.y += 0.004;
-  sphere.rotation.x += 0.002;
-
-  ring.rotation.z += 0.01;
-
-  points.rotation.y += 0.001;
-
-  renderer.render(scene,camera);
-
-}
-
-animate();
-
-})();
 // ===================== NAV ACTIVE STATE =====================
 const navLinks=document.querySelectorAll('.nav-links a');
 window.addEventListener('scroll',()=>{
@@ -1608,11 +1532,11 @@ profile.addEventListener("mouseleave",()=>{
   profile.style.transform="rotateX(0) rotateY(0)";
 });
 
-const canvas = document.getElementById("photo-particles");
-const ctx = canvas.getContext("2d");
+const photoCanvas = document.getElementById("photo-particles");
+const ctx = photoCanvas.getContext("2d");
 
-canvas.width = 360;
-canvas.height = 360;
+photoCanvas.width = 360;
+photoCanvas.height = 360;
 
 let PhotoParticles = [];
 
@@ -1647,6 +1571,8 @@ function animateParticles(){
 }
 
 animateParticles();
+
+
 </script>
 
 
