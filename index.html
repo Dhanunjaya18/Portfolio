@@ -376,7 +376,12 @@ transition:all .35s ease;
   .edu-school{color:var(--accent);font-size:.9rem;margin-bottom:4px;}
   .edu-meta{display:flex;gap:20px;color:var(--text-dim);font-family:'Share Tech Mono',monospace;font-size:.78rem;}
   .edu-score{background:rgba(0,240,255,0.1);border:1px solid var(--accent);padding:3px 10px;border-radius:2px;color:var(--accent);}
+.education-layout{display:grid;grid-template-columns: 1.3fr 1fr;gap:60px;align-items:center;}
 
+.edu-visual{height:420px;position:relative;}
+#edu-canvas{width:100%;height:100%;}
+
+@media(max-width:900px){.education-layout{grid-template-columns:1fr;}}
   /* PROJECTS */
   .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:24px;}
   .project-card{background:var(--card);border:1px solid var(--border);padding:28px;position:relative;overflow:hidden;transition:all .3s;cursor:none;}
@@ -648,45 +653,63 @@ transition:all .35s ease;
 
 <!-- EDUCATION -->
 <section id="education">
+
   <div class="section-header reveal">
     <h2 class="section-title">EDUCATION</h2>
     <div class="section-line"></div>
   </div>
-  <div class="edu-timeline">
-    <div class="edu-item reveal">
-      <div class="edu-dot"></div>
-      <div class="edu-card">
-        <div class="edu-degree">B.Tech — Computer Science &amp; Engineering</div>
-        <div class="edu-school">Lovely Professional University, Phagwara, Punjab</div>
-        <div class="edu-meta">
-          <span>Since August 2023</span>
-          <span class="edu-score">CGPA: 7.42</span>
+
+  <div class="education-layout">
+
+    <!-- LEFT SIDE : TIMELINE -->
+    <div class="edu-timeline">
+
+      <div class="edu-item reveal">
+        <div class="edu-dot"></div>
+        <div class="edu-card">
+          <div class="edu-degree">B.Tech — Computer Science & Engineering</div>
+          <div class="edu-school">Lovely Professional University, Phagwara, Punjab</div>
+          <div class="edu-meta">
+            <span>Since August 2023</span>
+            <span class="edu-score">CGPA: 7.42</span>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="edu-item reveal">
-      <div class="edu-dot"></div>
-      <div class="edu-card">
-        <div class="edu-degree">Intermediate (Class XII)</div>
-        <div class="edu-school">Sri Chaitanya Junior College, Tirupati, Andhra Pradesh</div>
-        <div class="edu-meta">
-          <span>April 2021 – March 2023</span>
-          <span class="edu-score">97.3%</span>
+
+      <div class="edu-item reveal">
+        <div class="edu-dot"></div>
+        <div class="edu-card">
+          <div class="edu-degree">Intermediate (Class XII)</div>
+          <div class="edu-school">Sri Chaitanya Junior College, Tirupati, Andhra Pradesh</div>
+          <div class="edu-meta">
+            <span>April 2021 – March 2023</span>
+            <span class="edu-score">97.3%</span>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="edu-item reveal">
-      <div class="edu-dot"></div>
-      <div class="edu-card">
-        <div class="edu-degree">Matriculation (Class X)</div>
-        <div class="edu-school">Sri Chaitanya Techno School, Kadapa, Andhra Pradesh</div>
-        <div class="edu-meta">
-          <span>April 2020 – March 2021</span>
-          <span class="edu-score">100%</span>
+
+      <div class="edu-item reveal">
+        <div class="edu-dot"></div>
+        <div class="edu-card">
+          <div class="edu-degree">Matriculation (Class X)</div>
+          <div class="edu-school">Sri Chaitanya Techno School, Kadapa, Andhra Pradesh</div>
+          <div class="edu-meta">
+            <span>April 2020 – March 2021</span>
+            <span class="edu-score">100%</span>
+          </div>
         </div>
       </div>
+
     </div>
+
+
+    <!-- RIGHT SIDE : 3D TECH GRAPHIC -->
+    <div class="edu-visual">
+      <canvas id="edu-canvas"></canvas>
+    </div>
+
   </div>
+
 </section>
 
 <div class="divider"></div>
@@ -1445,6 +1468,110 @@ window.addEventListener("click", e => {
 });
 
 });
+
+(function(){
+
+const canvas = document.getElementById("edu-canvas");
+
+const renderer = new THREE.WebGLRenderer({
+  canvas:canvas,
+  alpha:true,
+  antialias:true
+});
+
+renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+
+const scene = new THREE.Scene();
+
+const camera = new THREE.PerspectiveCamera(
+  60,
+  canvas.clientWidth / canvas.clientHeight,
+  0.1,
+  100
+);
+
+camera.position.z = 4;
+
+/* sphere wireframe */
+
+const geo = new THREE.SphereGeometry(1.5, 40, 40);
+
+const mat = new THREE.MeshBasicMaterial({
+  color:0x00f0ff,
+  wireframe:true,
+  transparent:true,
+  opacity:0.35
+});
+
+const sphere = new THREE.Mesh(geo, mat);
+
+scene.add(sphere);
+
+/* orbit ring */
+
+const ringGeo = new THREE.TorusGeometry(2.2,0.02,8,120);
+
+const ringMat = new THREE.MeshBasicMaterial({
+  color:0xff2d78,
+  transparent:true,
+  opacity:0.6
+});
+
+const ring = new THREE.Mesh(ringGeo, ringMat);
+
+ring.rotation.x = Math.PI/3;
+
+scene.add(ring);
+
+/* floating particles */
+
+const pGeo = new THREE.BufferGeometry();
+const positions = [];
+
+for(let i=0;i<200;i++){
+
+  positions.push(
+    (Math.random()-0.5)*6,
+    (Math.random()-0.5)*6,
+    (Math.random()-0.5)*6
+  );
+
+}
+
+pGeo.setAttribute(
+  'position',
+  new THREE.Float32BufferAttribute(positions,3)
+);
+
+const pMat = new THREE.PointsMaterial({
+  color:0x00f0ff,
+  size:0.03
+});
+
+const points = new THREE.Points(pGeo,pMat);
+
+scene.add(points);
+
+/* animation */
+
+function animate(){
+
+  requestAnimationFrame(animate);
+
+  sphere.rotation.y += 0.004;
+  sphere.rotation.x += 0.002;
+
+  ring.rotation.z += 0.01;
+
+  points.rotation.y += 0.001;
+
+  renderer.render(scene,camera);
+
+}
+
+animate();
+
+})();
 // ===================== NAV ACTIVE STATE =====================
 const navLinks=document.querySelectorAll('.nav-links a');
 window.addEventListener('scroll',()=>{
