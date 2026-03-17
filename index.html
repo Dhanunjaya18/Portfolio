@@ -95,8 +95,8 @@
 
   .profile-3d{
   position:relative;
-  width:280px;
-  height:280px;
+  width:320px;
+  height:320px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -269,23 +269,23 @@ transition:all .35s ease;
 }
 
 .badge1{
-  top:-10px;
+  top:-30px;
   left:40px;
 }
 
 .badge2{
-  top:-10px;
-  right:30px;
+  top:-30px;
+  right:40px;
 }
 
 .badge3{
-  bottom:10px;
-  left:30px;
+  bottom:-30px;
+  left:40px;
 }
 
 .badge4{
-  bottom:10px;
-  right:20px;
+  bottom:-30px;
+  right:40px;
 }
   /* HERO */
   #hero{
@@ -906,8 +906,6 @@ transition:all .35s ease;
   </div>
 
   <div class="certs-grid">
-
-```
 <div class="cert-card reveal"
      data-image="Screenshot 2026-03-11 183335.png"
      data-title="Generative AI — Oracle">
@@ -1181,7 +1179,6 @@ transition:all .35s ease;
     <h2 id="cert-title"></h2>
 
   </div>
-
 </div>
 <script>
 // ===================== CUSTOM CURSOR =====================
@@ -1333,32 +1330,7 @@ const skillObs=new IntersectionObserver(entries=>{
   });
 },{threshold:.3});
 document.querySelectorAll('.skill-category').forEach(el=>skillObs.observe(el));
-const certModal = document.getElementById("cert-modal");
-const certImage = document.getElementById("cert-image");
-const certTitle = document.getElementById("cert-title");
 
-document.querySelectorAll(".cert-card").forEach(cert=>{
-
-  cert.addEventListener("click",()=>{
-
-    certModal.classList.add("active");
-
-    certImage.src = cert.dataset.image;
-    certTitle.innerText = cert.dataset.title;
-
-  });
-
-});
-
-document.getElementById("cert-close").onclick = ()=>{
-  certModal.classList.remove("active");
-};
-
-window.addEventListener("click",(e)=>{
-  if(e.target === certModal){
-    certModal.classList.remove("active");
-  }
-});
 // ===================== LEETCODE HEATMAP (Generated) =====================
 (function(){
   const container=document.getElementById('heatmap-grid-container');
@@ -1419,6 +1391,35 @@ window.onclick = (e)=>{
     modal.classList.remove("active");
   }
 };
+
+});
+
+const certModal = document.getElementById("cert-modal");
+const certImage = document.getElementById("cert-image");
+const certTitle = document.getElementById("cert-title");
+
+document.querySelectorAll(".cert-card").forEach(card => {
+
+  card.addEventListener("click", () => {
+
+    certModal.classList.add("active");
+
+    certImage.src = card.dataset.image;
+    certTitle.innerText = card.dataset.title;
+
+  });
+
+});
+
+document.getElementById("cert-close").onclick = () => {
+  certModal.classList.remove("active");
+};
+
+window.addEventListener("click", e => {
+
+  if(e.target === certModal){
+    certModal.classList.remove("active");
+  }
 
 });
 // ===================== NAV ACTIVE STATE =====================
