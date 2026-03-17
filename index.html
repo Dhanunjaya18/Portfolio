@@ -102,6 +102,10 @@
   justify-content:center;
   perspective:1000px;
 }
+.skill-badge:hover{
+  transform:scale(1.1);
+  box-shadow:0 0 20px rgba(0,240,255,0.6);
+}
 
 .about-photo{
   width:240px;
@@ -261,6 +265,7 @@ transition:all .35s ease;
   box-shadow:0 0 10px rgba(0,240,255,0.2);
 
   animation:floatSkill 6s ease-in-out infinite;
+  z-index:5;
 }
 
 .badge1{
@@ -322,12 +327,17 @@ transition:all .35s ease;
   .stat-label{font-family:'Share Tech Mono',monospace;font-size:.75rem;color:var(--text-dim);letter-spacing:1px;}
   .about-visual{position:relative;height:350px;display:flex;align-items:center;justify-content:center;}
   .about-photo{
-  width:280px;
-  height:280px;
+   width:240px;
+  height:240px;
   object-fit:cover;
   border-radius:50%;
   border:3px solid var(--accent);
-  box-shadow:0 0 30px rgba(0,240,255,0.4);
+
+  z-index:2;
+
+  box-shadow:
+  0 0 20px rgba(0,240,255,0.6),
+  0 0 60px rgba(162,89,255,0.3);
   animation: floatY 5s ease-in-out infinite;
 }
   #about-canvas{width:100%;height:100%;}
@@ -887,7 +897,7 @@ transition:all .35s ease;
 
 <div class="divider"></div>
 
-  <!-- CERTIFICATES -->
+    <!-- CERTIFICATES -->
 
 <section id="certificates">
   <div class="section-header reveal">
@@ -1009,7 +1019,9 @@ transition:all .35s ease;
     </div>
   </div>
 </div>
+```
 
+  </div>
 </section>
 
 <div class="divider"></div>
