@@ -1181,7 +1181,11 @@ transition:all .35s ease;
   <div class="achievements-list">
 
     <!-- 01 -->
-    <div class="achievement-card reveal">
+    <div class="achievement-card reveal"
+         data-image="Screenshot 2026-03-22 111157.png"
+         data-title="290+ LeetCode Problems Solved"
+         data-desc="Strengthened problem-solving skills by consistently solving problems across arrays, graphs, DP, and advanced data structures.">
+
       <div class="ach-media">
         <img src="Screenshot 2026-03-22 111157.png" alt="LeetCode">
       </div>
@@ -1197,7 +1201,11 @@ transition:all .35s ease;
     </div>
 
     <!-- 02 -->
-    <div class="achievement-card reveal">
+    <div class="achievement-card reveal"
+         data-image="Screenshot 2026-03-22 111351.png"
+         data-title="HackerRank C++ — 44/44 Problems Solved"
+         data-desc="Mastered C++ concepts including STL, classes, templates, and problem-solving patterns through full domain completion.">
+
       <div class="ach-media">
         <img src="Screenshot 2026-03-22 111351.png" alt="HackerRank">
       </div>
@@ -1213,7 +1221,11 @@ transition:all .35s ease;
     </div>
 
     <!-- 03 -->
-    <div class="achievement-card reveal">
+    <div class="achievement-card reveal"
+         data-image="Screenshot 2026-03-22 111446.png"
+         data-title="5-Star Problem Solving Badge — HackerRank"
+         data-desc="Achieved top-tier ranking by solving complex algorithmic challenges with optimized and efficient solutions.">
+
       <div class="ach-media">
         <img src="Screenshot 2026-03-22 111446.png" alt="Badge">
       </div>
@@ -1228,8 +1240,12 @@ transition:all .35s ease;
       </div>
     </div>
 
-    <!-- 04 NEW 🔥 -->
-    <div class="achievement-card reveal">
+    <!-- 04 -->
+    <div class="achievement-card reveal"
+         data-image="Geek-Fiesta8.jpg"
+         data-title="Top 5 Finalist — National Level Hackathon"
+         data-desc="Secured a Top 5 position among multiple teams by building an innovative real-world solution with strong technical implementation and presentation.">
+
       <div class="ach-media">
         <img src="Geek-Fiesta8.jpg" alt="Hackathon">
       </div>
@@ -1248,7 +1264,6 @@ transition:all .35s ease;
 </section>
 
 <div class="divider"></div>
-
 <!-- LEETCODE HEATMAP -->
 <section id="leetcode">
   <div class="section-header reveal">
@@ -1386,6 +1401,23 @@ transition:all .35s ease;
       <a id="cert-link" target="_blank" class="btn btn-primary">
         VIEW CERTIFICATE
       </a>
+    </div>
+
+  </div>
+
+</div>
+
+<div id="ach-modal" class="project-modal">
+
+  <div class="modal-content">
+
+    <span class="modal-close" id="ach-close">&times;</span>
+
+    <img id="ach-image" class="modal-image">
+
+    <div class="modal-text">
+      <h2 id="ach-title"></h2>
+      <p id="ach-desc"></p>
     </div>
 
   </div>
@@ -1652,7 +1684,34 @@ window.addEventListener("click", e => {
 
 });
 
+const achModal = document.getElementById("ach-modal");
+const achImage = document.getElementById("ach-image");
+const achTitle = document.getElementById("ach-title");
+const achDesc = document.getElementById("ach-desc");
 
+document.querySelectorAll(".achievement-card").forEach(card => {
+  card.addEventListener("click", () => {
+
+    achModal.classList.add("active");
+
+    achImage.src = card.dataset.image;
+    achTitle.innerText = card.dataset.title;
+    achDesc.innerText = card.dataset.desc;
+
+  });
+});
+
+// close button
+document.getElementById("ach-close").onclick = () => {
+  achModal.classList.remove("active");
+};
+
+// click outside
+window.addEventListener("click", e => {
+  if (e.target === achModal) {
+    achModal.classList.remove("active");
+  }
+});
 // ===================== NAV ACTIVE STATE =====================
 const navLinks=document.querySelectorAll('.nav-links a');
 window.addEventListener('scroll',()=>{
